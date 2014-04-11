@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 11, 2014 3:07:04 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.perficient.pimentomvc.Broker" table="broker" catalog="perficient">
+        <id name="brokerId" type="java.lang.Integer">
+            <column name="brokerId" />
+            <generator class="identity" />
+        </id>
+        <property name="firstName" type="string">
+            <column name="firstName" not-null="true" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="lastName" not-null="true" />
+        </property>
+        <set name="groupses" table="groups" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="brokerId" not-null="true" />
+            </key>
+            <one-to-many class="com.perficient.pimentomvc.Groups" />
+        </set>
+    </class>
+</hibernate-mapping>

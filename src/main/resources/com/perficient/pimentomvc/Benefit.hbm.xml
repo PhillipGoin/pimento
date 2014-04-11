@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 11, 2014 3:07:04 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.perficient.pimentomvc.Benefit" table="benefit" catalog="perficient">
+        <id name="benefitId" type="java.lang.Integer">
+            <column name="benefitId" />
+            <generator class="identity" />
+        </id>
+        <property name="benefitName" type="string">
+            <column name="benefitName" not-null="true" />
+        </property>
+        <property name="benefitDescription" type="string">
+            <column name="benefitDescription" length="45" not-null="true" />
+        </property>
+        <property name="startDate" type="timestamp">
+            <column name="startDate" length="19" not-null="true" />
+        </property>
+        <property name="endDate" type="timestamp">
+            <column name="endDate" length="19" />
+        </property>
+        <set name="groupBenefits" table="groupBenefit" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="benefitId" not-null="true" />
+            </key>
+            <one-to-many class="com.perficient.pimentomvc.GroupBenefit" />
+        </set>
+    </class>
+</hibernate-mapping>

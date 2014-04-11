@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 11, 2014 3:07:04 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.perficient.pimentomvc.Groups" table="groups" catalog="perficient">
+        <id name="groupId" type="java.lang.Integer">
+            <column name="groupId" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="broker" class="com.perficient.pimentomvc.Broker" fetch="select">
+            <column name="brokerId" not-null="true" />
+        </many-to-one>
+        <property name="groupName" type="string">
+            <column name="groupName" not-null="true" />
+        </property>
+        <property name="isActive" type="boolean">
+            <column name="isActive" not-null="true" />
+        </property>
+        <set name="groupBenefits" table="groupBenefit" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="groupId" not-null="true" />
+            </key>
+            <one-to-many class="com.perficient.pimentomvc.GroupBenefit" />
+        </set>
+    </class>
+</hibernate-mapping>
